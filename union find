@@ -1,0 +1,20 @@
+time complexity of Union-Find data structure.
+
+I saw time complexity of union and find function depends on some conditions.
+
+without anything: O(N)
+with Union by Rank: O(logN)
+with Path Compression: O(α(N)) which is inverse Ackermann function.
+I understood O(N) because of skewed tree of disjoint set. But, I cannot understand O(logN). I looked on Wikipedia and Stack Overflow, but I couldn't find it. How can I prove second time
+Firstly, here is the precise statement of the case 2 in OP's question.
+
+A sequence of m MAKE-SET, UNION, and FIND operations, n of which are MAKE-SET operations, can be performed on a disjoint-set forest with union by rank in worst-case time O(mlog2n).
+
+In fact, it is trivial to see that the MAKE-SET and UNION operations run in O(1) time. So the question is really about the time-complexity of the FIND operation.
+
+Here are the properties of the disjoint-set forest you can prove.
+
+Given any node u that has been added to the set of union-find data structure, the ranks of the nodes in a path from u to its root is strictly increasing.
+A node u which is root of a sub-tree with rank r has at least 2r nodes. (This fact can be proved by induction on r).
+Every node has rank at most log2n.
+With properties 1 and 3, it should be easy to prove the desired time complexity.
